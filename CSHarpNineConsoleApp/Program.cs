@@ -117,6 +117,13 @@ namespace CSHarpNineConsoleApp
             int? length = string.IsNullOrEmpty(input) ? null : input.Length;
 
 
+            //////////////////////////////
+            //Liskove:
+            Fruit fruit = new Orange();
+            Console.WriteLine(fruit.GetColor());
+            fruit = new Apple();
+            Console.WriteLine(fruit.GetColor());
+
 
             Console.Write("Again?(y):");
             var exit = Console.ReadKey();
