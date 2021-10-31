@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using CSHarpNineConsoleApp.CorrectDIP;
 
 namespace CSHarpNineConsoleApp
 {
@@ -123,6 +124,14 @@ namespace CSHarpNineConsoleApp
             Console.WriteLine(fruit.GetColor());
             fruit = new Apple();
             Console.WriteLine(fruit.GetColor());
+
+
+            ////////////////////
+            //use DIP:
+            var emp = new EmployeeBusinessLogic();
+            var res = emp.GetEmployeeDetails(1);
+            Console.WriteLine(res.ToString());
+
 
 
             Console.Write("Again?(y):");

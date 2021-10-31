@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,17 @@ namespace CSHarpNineConsoleApp
 {
     public class Student
     {
+        public static readonly DashboardHeaderConfiguration _dashboardHeaderConfig;
+
+        Student(IOptions<DashboardHeaderConfiguration> options)
+        {
+
+        }
+
+        public Student()
+        {
+        }
+
         public string StudentName { get; init; }
 
         internal void PrintUserInfo()
@@ -23,6 +35,11 @@ namespace CSHarpNineConsoleApp
 
             return this.StudentName == other.StudentName;
 
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
