@@ -12,6 +12,10 @@
         public List<string> AddressLines { get; set; } = new List<string>();
         public string Surname { get; internal set; }
         public string Forename { get; internal set; }
+
+
+        public IList<Pet> Pets { get; set; } = new List<Pet>();
+
     }
 
 }

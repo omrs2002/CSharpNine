@@ -6,7 +6,7 @@ namespace FluentValidationConsole.Models.DependencyInjection
 
     public interface IUserService
 {
-        Task ValidateUser(User user);
+        Task<string> ValidateUser(User user);
     }
 
     public class UserService : IUserService
@@ -18,9 +18,11 @@ namespace FluentValidationConsole.Models.DependencyInjection
             _validator = validator;
         }
 
-        public async Task ValidateUser(User user)
+
+        public async Task<string> ValidateUser(User user)
         {
             var validationResult = await _validator.ValidateAsync(user);
+            return validationResult.ToString();
         }
     }
 

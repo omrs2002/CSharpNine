@@ -3,27 +3,17 @@ using FluentValidation;
 using FluentValidation.Results;
 using FluentValidationConsole.Models;
 using FluentValidationConsole.Models.DependencyInjection;
+using FluentValidationConsole.Models.Validators;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-
 var host = new HostBuilder()
      .ConfigureServices(services =>
      {
-         var serviceProvider = services.BuildServiceProvider();
-         services.AddTransient<IValidator<User>, UserValidator>();
+         //services.AddScoped<IValidator<User>, UserValidator>();
+         services.AddValidatorsFromAssemblyContaining<UserValidator>();
          services.AddTransient<IUserService, UserService>();
-
-         Console.WriteLine("//////////////////////////////////");
-         Console.WriteLine("Dependeny Validation");
-
-         if (serviceProvider != null)
-         {
-             var userService = serviceProvider.GetRequiredService<UserService>();
-             var resu = userService.ValidateUser(new User { Id = 1, Name = "" });
-         }
-
      })
      .Build();
 
@@ -51,7 +41,7 @@ CustomerValidator validator = new CustomerValidator();
 
 ValidationResult result = validator.Validate(customer);
 
-Console.WriteLine("IsValid",result.IsValid.ToString());
+Console.WriteLine("IsValid", result.IsValid.ToString());
 
 Console.WriteLine(result.ToString());
 Console.WriteLine("//////////////////////////////////");
@@ -61,7 +51,7 @@ Console.WriteLine("Complex Properties");
 
 Person person = new Person
 {
-    AddressLines = new List<string> { "address 1",""}
+    AddressLines = new List<string> { "address 1", "" }
 };
 PersonValidator Pvalidator = new PersonValidator();
 ValidationResult Presult = Pvalidator.Validate(person);
@@ -77,9 +67,25 @@ var cus_result = validatorR.Validate(_customer, options => options.IncludeRuleSe
 Console.WriteLine(cus_result.ToString());
 
 
+Console.WriteLine("//////////////////////////////////");
+Console.WriteLine("Dependeny Validation");
 
 
+var userService = host.Services.GetRequiredService<IUserService>();
+var resu = userService.ValidateUser(new User { Id = 1, Name = "" });
+Console.WriteLine(resu.Result);
 
+Console.WriteLine("//////////////////////////////////");
+Console.WriteLine("Custom Validation");
+var _personPetsvalidator = new PersonPetsValidator();
+
+var _personWithNoPets = new Person();
+var cust_pets_result = _personPetsvalidator.Validate(_personWithNoPets);
+Console.WriteLine(cust_pets_result.ToString());
+
+_personPetsvalidator = new PersonPetsValidator(1,10);
+cust_pets_result = _personPetsvalidator.Validate(_personWithNoPets);
+Console.WriteLine(cust_pets_result.ToString());
 
 
 Console.ReadKey();

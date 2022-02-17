@@ -12,7 +12,7 @@ namespace FluentValidationConsole.Models.DependencyInjection
     {
         public UserValidator()
         {
-            RuleFor(x => x.Name).NotNull();
+            RuleFor(x => x.Name).NotEmpty();
 
         }
     }

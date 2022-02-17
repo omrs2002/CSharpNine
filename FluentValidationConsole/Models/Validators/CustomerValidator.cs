@@ -16,6 +16,7 @@ namespace FluentValidationConsole.Models
         {
             RuleFor(customer => customer.Surname).NotNull().NotEqual("") ;
             RuleFor(customer => customer.Address).SetValidator(new AddressValidator());
+            
 
             RuleForEach(x => x.Orders).SetValidator(new OrderValidator());
 
