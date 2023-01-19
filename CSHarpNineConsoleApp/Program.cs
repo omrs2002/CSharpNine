@@ -150,6 +150,7 @@ namespace CSHarpNineConsoleApp
             Func<string> SomeMethodName = () => {  return "Func<string>"; };
             Console.WriteLine(SomeMethodName());
             //2 input parameter & int return type
+            
             Func<int, int, int> getBigInteger = (x, y) => { if (x > y) return x; else return y; };
             Console.WriteLine(getBigInteger(10, 15));
 
@@ -201,11 +202,12 @@ namespace CSHarpNineConsoleApp
             //use lybda expression:
             Expression<Func<string, string, string>> StringJoinExpr = (str1, str2) => string.Concat(str1, str2);
             //get function from expression
-            Func<string, string, string> funX = StringJoinExpr.Compile();
+            //Func<string, string, string> funX = StringJoinExpr.Compile();
             //get expression from function (return it back):
-            Expression<Func<string, string, string>> expression = Expression.Lambda<Func<string, string, string>>(Expression.Call(funX.Method));
+            //Expression<Func<string, string, string>> expression = Expression.Lambda<Func<string, string, string>>(Expression.Call(funX.Method));
 
-
+            Console.WriteLine("Print 3D array:");
+            UseArrays.Create3DArray();
             Console.Write("Again?(y):");
             var exit = Console.ReadKey();
             if (exit.KeyChar.ToString().ToUpper() == "Y")

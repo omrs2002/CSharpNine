@@ -6,7 +6,6 @@ using FluentValidationConsole.Models.DependencyInjection;
 using FluentValidationConsole.Models.Validators;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Primitives;
 using System;
 using System.Text;
 
@@ -89,27 +88,6 @@ _personPetsvalidator = new PersonPetsValidator(1, 10);
 cust_pets_result = _personPetsvalidator.Validate(_personWithNoPets);
 Console.WriteLine(cust_pets_result.ToString());
 
-//multi dim array:
-int[,] arr2x2 = new int[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } };
-StringBuilder sb = new StringBuilder();
-sb.Append("[");
-int total = 0 ;
-for (int i = 0; i < arr2x2.GetLength(0); i++)
-{
-    if (i != 0)
-        sb.AppendLine();
-    for (int j = 0; j < arr2x2.GetLength(1); j++)
-    {
-        sb.Append((j == 0 ? "" : ",") + arr2x2[i, j]);
-        total = total + arr2x2[i, j];
-    }
-
-}
-sb.Append("]");
-
-Console.WriteLine(sb.ToString());
-
-Console.WriteLine($"total = {total}");
 
 
 Console.ReadKey();
