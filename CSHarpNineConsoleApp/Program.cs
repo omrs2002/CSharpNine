@@ -28,6 +28,9 @@ namespace CSHarpNineConsoleApp
         {
 
 
+            //Random password
+            Console.WriteLine(Util.GenerateRandomPassword());
+            Console.ReadLine();
             //01 - Init-only properties
             Student st = new()
             {StudentName = "Omar Abuhadid from record class"};
