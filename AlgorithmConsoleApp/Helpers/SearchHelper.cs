@@ -57,5 +57,20 @@
             }
             return A;
         }
+        public static int[] IndexOfCapitals(string str)
+        {
+            List<int> lst = new List<int>();
+            string[] AllCaps = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".Split(',');
+            for (int i = 0; i < str.Length; i++)
+            {
+                //str.Substring(i,1)
+
+                if (AllCaps.Contains(str.Substring(i, 1)))
+                {
+                    lst.Add(i);
+                }
+            }
+            return lst.ToArray();
+        }
     }
 }

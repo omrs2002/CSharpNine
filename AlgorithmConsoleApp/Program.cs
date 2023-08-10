@@ -6,6 +6,7 @@ namespace AlgorithmConsoleApp
     {
         static void Main(string[] args)
         {
+            Console.WriteLine($"result of Math.Log10(100) = {Math.Log10(1000)}");
             Console.WriteLine("Hello, World!");
             int[] A = new int[10000];
             for (int i = 0; i < 10000; i++) A[i] = i;
@@ -15,7 +16,7 @@ namespace AlgorithmConsoleApp
             int indx = SearchHelper.BinarySearch(A, 70);
             Console.WriteLine($"result of BinarySearch = {indx}");
 
-            int indx2 = SearchHelper.BinarySearchRecursive(A, 70,0,200);
+            int indx2 = SearchHelper.BinarySearchRecursive(A, 70, 0, 200);
 
             Console.WriteLine($"result of BinarySearchRecursive = {indx2}");
             //watch.Stop();
@@ -27,11 +28,16 @@ namespace AlgorithmConsoleApp
             //watch.Stop();
             //Console.WriteLine($"Total Execution 2 Time: {watch.ElapsedMilliseconds} and result = {indx2}");
 
-            int[] notSorted = {12,1,5,2,9};
+            int[] notSorted = { 12, 1, 5, 2, 9 };
             var sortedArray = SearchHelper.SortByInsertionSorted(notSorted);
             Console.WriteLine(sortedArray.ToList().ToString());
-
-
+            Console.Write("EnterString:");
+            string? inpStr = Console.ReadLine();
+            if (inpStr != null)
+            {
+                var result = SearchHelper.IndexOfCapitals(inpStr);
+                Console.WriteLine($"IndexOfCapitals({inpStr}) is {String.Join(",", result)}");
+            }
             Console.ReadLine();
         }
     }
