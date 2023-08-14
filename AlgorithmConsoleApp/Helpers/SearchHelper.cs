@@ -39,7 +39,6 @@
 
         }
 
-
         public static int[] SortByInsertionSorted(int[] inputArray)
         {
             int[] A = inputArray;
@@ -72,5 +71,66 @@
             }
             return lst.ToArray();
         }
+
+        public static int[] QuickSort(int[] array, int leftIndex, int rightIndex)
+        {
+
+            var i = leftIndex;
+            var j = rightIndex;
+            var pivot = array[leftIndex];
+            while (i <= j)
+            {
+                while (array[i] < pivot)
+                {
+                    i++;
+                }
+
+                while (array[j] > pivot)
+                {
+                    j--;
+                }
+                if (i <= j)
+                {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
+                    j--;
+                }
+            }
+
+            if (leftIndex < j)
+                QuickSort(array, leftIndex, j);
+            if (i < rightIndex)
+                QuickSort(array, i, rightIndex);
+            return array;
+        }
+
+        public static void MergeSort(int[] A, int al, int ar, int[] B, int bl, int br, int[] C)
+        {
+
+            // merges a sorted array-Segment A[al]...A[ar] with
+            // B[bl]..B[br] to a sorted segment C[0] ...
+           int i = al, j = bl;
+            for (int k = 0; k <= ar - al + br - bl + 1; k++)
+            {
+                if (i > ar) // A is finished
+                { C[k] = B[j++]; continue; }
+                if (j > br) // B is finished
+                { C[k] = A[i++]; continue; }
+                C[k] = (A[i] < B[j]) ? A[i++] : B[j++];
+            }
+        }
+
+        
+        public static int[] CreateRandomArray(int size)
+        {
+            var array = new int[size];
+            var rand = new Random();
+            for (int i = 0; i < size; i++)
+                array[i] = rand.Next(1,100);
+            return array;
+        }
+
     }
 }

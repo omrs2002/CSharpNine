@@ -1,4 +1,5 @@
 ﻿using AlgorithmConsoleApp.Helpers;
+using System;
 
 namespace AlgorithmConsoleApp
 {
@@ -6,17 +7,19 @@ namespace AlgorithmConsoleApp
     {
         static void Main(string[] args)
         {
+            start:
+
             Console.WriteLine($"result of Math.Log10(100) = {Math.Log10(1000)}");
             Console.WriteLine("Hello, World!");
-            int[] A = new int[10000];
-            for (int i = 0; i < 10000; i++) A[i] = i;
+            int[] Arr = new int[10000];
+            for (int i = 0; i < 10000; i++) Arr[i] = i;
 
             //var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            int indx = SearchHelper.BinarySearch(A, 70);
+            int indx = SearchHelper.BinarySearch(Arr, 70);
             Console.WriteLine($"result of BinarySearch = {indx}");
 
-            int indx2 = SearchHelper.BinarySearchRecursive(A, 70, 0, 200);
+            int indx2 = SearchHelper.BinarySearchRecursive(Arr, 70, 0, 200);
 
             Console.WriteLine($"result of BinarySearchRecursive = {indx2}");
             //watch.Stop();
@@ -27,8 +30,9 @@ namespace AlgorithmConsoleApp
             //int indx2 = Array.IndexOf(A, 70);
             //watch.Stop();
             //Console.WriteLine($"Total Execution 2 Time: {watch.ElapsedMilliseconds} and result = {indx2}");
-
+            /*
             int[] notSorted = { 12, 1, 5, 2, 9 };
+
             var sortedArray = SearchHelper.SortByInsertionSorted(notSorted);
             Console.WriteLine(sortedArray.ToList().ToString());
             Console.Write("EnterString:");
@@ -38,7 +42,30 @@ namespace AlgorithmConsoleApp
                 var result = SearchHelper.IndexOfCapitals(inpStr);
                 Console.WriteLine($"IndexOfCapitals({inpStr}) is {String.Join(",", result)}");
             }
-            Console.ReadLine();
+            */
+            //test quick sort:
+            int[] staticNotQuickSorted = SearchHelper.CreateRandomArray(7);
+            /*
+            int[] staticNotQuickSorted = { 12, 1, 5};
+            int[] notQuickSorted = (int[])staticNotQuickSorted.Clone();
+            var quickSortedArray = SearchHelper.QuickSort(notQuickSorted,0, notQuickSorted.Length-1);
+            Console.WriteLine($"the result of quickSortedArray({String.Join(",", staticNotQuickSorted)}) is {String.Join(",", quickSortedArray)}");
+            */
+
+            //Merge sort:
+            int[] A = SearchHelper.CreateRandomArray(5);
+            int[] B = SearchHelper.CreateRandomArray(5);
+            int[] C = new int[A.Length*2];
+
+            //var res = SearchHelper.MergeSort(A, 0, A.Length-1,B,0,B.Length-1, C);
+            int[] res = A.Concat(B).ToArray();
+            Array.Sort(res);
+
+            Console.WriteLine($"the result of MergeSort(A({String.Join(",", A)}) and\n B({String.Join(",", B)}) is\n ({String.Join(",", res)})");
+            Console.Write("Again?(Y)");
+            var again = Console.ReadLine();
+            if(again == "Y")
+                goto start;
         }
     }
 }
