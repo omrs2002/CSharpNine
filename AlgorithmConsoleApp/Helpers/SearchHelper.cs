@@ -106,12 +106,32 @@
             return array;
         }
 
+        public static int[] SortArray(int[] inputArray)
+        {
+            int s3 = inputArray.Length;
+            int[] arr3 = new int[s3];
+
+            for (int i = 0; i < s3; i++)
+            {
+                for (int k = 0; k < s3 - 1; k++)
+                {
+                    if (arr3[k] >= arr3[k + 1])
+                    {
+                        int j = arr3[k + 1];
+                        arr3[k + 1] = arr3[k];
+                        arr3[k] = j;
+                    }
+                }
+            }
+            return arr3;
+
+        }
         public static void MergeSort(int[] A, int al, int ar, int[] B, int bl, int br, int[] C)
         {
 
             // merges a sorted array-Segment A[al]...A[ar] with
             // B[bl]..B[br] to a sorted segment C[0] ...
-           int i = al, j = bl;
+            int i = al, j = bl;
             for (int k = 0; k <= ar - al + br - bl + 1; k++)
             {
                 if (i > ar) // A is finished
@@ -122,14 +142,42 @@
             }
         }
 
-        
+
         public static int[] CreateRandomArray(int size)
         {
             var array = new int[size];
             var rand = new Random();
             for (int i = 0; i < size; i++)
-                array[i] = rand.Next(1,100);
+                array[i] = rand.Next(1, 100);
             return array;
+        }
+
+
+        public static bool SearchNaiveAlgorithm(char[] t, char[] w)
+        {
+            //My Code:
+            //int counter;
+            //for (int j = 0; j < t.Length; j++)
+            //{
+            //    counter = 0;
+
+            //        for (int i = 0; i < w.Length; i++)
+            //        {
+            //            if (t[j+ counter] == w[i])
+            //                counter++;
+            //        }
+            //        if (counter == w.Length) return true;
+            //}
+            //return false;
+            //Improved:
+            
+            for (int j = 0; j <= t.Length - w.Length; j++)
+            {
+                int counter = 0;
+                while (counter < w.Length && t[j + counter] == w[counter]) counter++;
+                if (counter == w.Length) return true;
+            }
+            return false;
         }
 
     }

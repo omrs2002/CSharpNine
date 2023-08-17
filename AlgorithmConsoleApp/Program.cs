@@ -51,6 +51,10 @@ namespace AlgorithmConsoleApp
             var quickSortedArray = SearchHelper.QuickSort(notQuickSorted,0, notQuickSorted.Length-1);
             Console.WriteLine($"the result of quickSortedArray({String.Join(",", staticNotQuickSorted)}) is {String.Join(",", quickSortedArray)}");
             */
+            int[] Xs = SearchHelper.CreateRandomArray(5);
+            Console.WriteLine($"Normal Sort");
+            int[] normalSort = SearchHelper.SortArray(Xs);
+            Console.WriteLine($"the result of Normal of({String.Join(",", Xs)}) Sort(A({String.Join(",", normalSort)})");
 
             //Merge sort:
             int[] A = SearchHelper.CreateRandomArray(5);
@@ -62,6 +66,18 @@ namespace AlgorithmConsoleApp
             Array.Sort(res);
 
             Console.WriteLine($"the result of MergeSort(A({String.Join(",", A)}) and\n B({String.Join(",", B)}) is\n ({String.Join(",", res)})");
+
+            Console.WriteLine("/////////////////////////////////");
+            Console.WriteLine("Search Naive Algorithm");
+            char[] t = "The final day!".ToCharArray();
+            char[] w = "final".ToCharArray();
+            
+
+            bool r = SearchHelper.SearchNaiveAlgorithm(t,w);
+            Console.WriteLine("result of SearchNaiveAlgorithm:"+r.ToString());
+
+
+
             Console.Write("Again?(Y)");
             var again = Console.ReadLine();
             if(again == "Y")
