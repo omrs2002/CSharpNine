@@ -7,10 +7,32 @@ namespace AlgorithmConsoleApp
     {
         static void Main(string[] args)
         {
-            start:
+        start:
 
-            Console.WriteLine($"result of Math.Log10(100) = {Math.Log10(1000)}");
+            //Console.WriteLine($"result of Math.Log10(100) = {Math.Log10(1000)}");
             Console.WriteLine("Hello, World!");
+
+            TestQuickSort();
+
+            Console.Write("Again?(Y)");
+            var again = Console.ReadLine();
+            if (again == "Y")
+                goto start;
+        }
+
+        private static void TestQuickSort()
+        {
+            int[] arr = SearchHelper.CreateRandomArray(8);
+            
+            Console.WriteLine("Original array: " + string.Join(", ", arr));
+
+            QuickSortHelper.Quicksort(arr, 0, arr.Length - 1);
+
+            Console.WriteLine("Sorted array: " + string.Join(", ", arr));
+        }
+
+        public static void RabishCode()
+        {
             int[] Arr = new int[10000];
             for (int i = 0; i < 10000; i++) Arr[i] = i;
 
@@ -59,7 +81,7 @@ namespace AlgorithmConsoleApp
             //Merge sort:
             int[] A = SearchHelper.CreateRandomArray(5);
             int[] B = SearchHelper.CreateRandomArray(5);
-            int[] C = new int[A.Length*2];
+            int[] C = new int[A.Length * 2];
 
             //var res = SearchHelper.MergeSort(A, 0, A.Length-1,B,0,B.Length-1, C);
             int[] res = A.Concat(B).ToArray();
@@ -71,17 +93,13 @@ namespace AlgorithmConsoleApp
             Console.WriteLine("Search Naive Algorithm");
             char[] t = "The final day!".ToCharArray();
             char[] w = "final".ToCharArray();
-            
-
-            bool r = SearchHelper.SearchNaiveAlgorithm(t,w);
-            Console.WriteLine("result of SearchNaiveAlgorithm:"+r.ToString());
 
 
+            bool r = SearchHelper.SearchNaiveAlgorithm(t, w);
+            Console.WriteLine("result of SearchNaiveAlgorithm:" + r.ToString());
 
-            Console.Write("Again?(Y)");
-            var again = Console.ReadLine();
-            if(again == "Y")
-                goto start;
+
+
         }
     }
 }

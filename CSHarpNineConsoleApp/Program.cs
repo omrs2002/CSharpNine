@@ -24,9 +24,17 @@ namespace CSHarpNineConsoleApp
     {
       
 
+
         static void Main(string[] args)
         {
 
+            var bool_str = Util.BackspaceCompare("a#c","b");
+            var expired = Util.IsContractExpired(null);
+            expired = Util.IsContractExpired(DateTime.MinValue);
+            //Assert.False(result);
+            expired = Util.IsContractExpired(DateTime.Today.Date.AddDays(12));
+            expired = Util.IsContractExpired(DateTime.Today.Date);
+            expired = Util.IsContractExpired(DateTime.Now.Date.AddDays(-12));
 
             //Random password
             Console.WriteLine(Util.GenerateRandomPassword());

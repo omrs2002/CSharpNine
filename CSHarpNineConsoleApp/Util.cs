@@ -64,6 +64,34 @@ namespace CSHarpNineConsoleApp
             return new string(passwordChars.OrderBy(c => random.Next()).ToArray());
         }
 
+        public static bool IsContractExpired(DateTime? ExpiryDate)
+        {
+            return ExpiryDate.HasValue ? (ExpiryDate.Value.Date < DateTime.Today.Date && !ExpiryDate.Value.Equals(DateTime.MinValue)) : false;
+        }
+        public static bool BackspaceCompare(string s, string t)
+        {
+            string srt1 = "";
+            string srt2 = "";
+            foreach (char c in s)
+            {
+                srt1 = srt1 + c;
+                if (c == '#')
+                    if (srt1.Length > 1)
+                        srt1 = srt1.Substring(0, srt1.Length - 2);
+                    else
+                        srt1 = "";
+            }
+            foreach (char c in t)
+            {
+                srt2 = srt2 + c;
+                if (c == '#')
+                    if (srt2.Length > 1)
+                        srt2 = srt2.Substring(0, srt2.Length - 2);
+                    else
+                        srt2 = "";
+            }
+            return srt1 == srt2;
+        }
 
 
 
